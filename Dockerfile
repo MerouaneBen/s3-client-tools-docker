@@ -8,11 +8,11 @@ RUN apk update && apk add --no-cache \
     less \
     mailcap \
     minio-client \
-    findutils
+    findutils \
+    bash
 
-# Upgrade pip and install AWS CLI
-RUN pip3 install --upgrade pip && \
-    pip3 install awscli
+# Install AWS CLI without upgrading system pip
+RUN pip3 install awscli --ignore-installed
 
-# Set the entrypoint
-ENTRYPOINT ["/bin/sh"]
+# Set the entrypoint to bash
+ENTRYPOINT ["/bin/bash"]
